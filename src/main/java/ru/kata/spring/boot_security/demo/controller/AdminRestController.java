@@ -11,8 +11,8 @@ import ru.kata.spring.boot_security.demo.service.UserService;
 import java.util.List;
 
 @RestController
-@PreAuthorize("hasAuthority('ROLE_ADMIN')")
-@RequestMapping("/api")
+@PreAuthorize("hasRole('ROLE_ADMIN')")
+@RequestMapping("/admin")
 public class AdminRestController {
     private final UserService userService;
 
@@ -37,7 +37,7 @@ public class AdminRestController {
     }
 
     @PatchMapping("/users/{id}")
-    public ResponseEntity<HttpStatus> updateUser(@RequestBody User user) {
+    public ResponseEntity<HttpStatus> updateUser(@RequestBody User user, @PathVariable String id) {
         userService.updateUser(user);
 
         return ResponseEntity.ok(HttpStatus.OK);

@@ -10,7 +10,7 @@ import java.security.Principal;
 
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/user")
 public class UserRestController {
     private final UserService userService;
 
@@ -18,7 +18,7 @@ public class UserRestController {
         this.userService = userService;
     }
 
-    @GetMapping("/user")
+    @GetMapping("/current")
     public ResponseEntity<User> getCurrentUser(Principal principal) {
         return ResponseEntity.ok(userService.findByUsername(principal.getName()));
     }
